@@ -25,12 +25,16 @@ test("keeps the public IA focused on home, buying, selling and contact", async (
 });
 
 test("offers data-driven locations, a budget slider and the requested valuation fields", async () => {
-  const [home, search, contact] = await Promise.all([read("app/page.tsx"), read("components/SearchBar.tsx"), read("components/ContactForm.tsx")]);
+  const [home, search, contact, explorer, admin, propertyConfig] = await Promise.all([read("app/page.tsx"), read("components/SearchBar.tsx"), read("components/ContactForm.tsx"), read("components/PropertyExplorer.tsx"), read("app/admin/AdminDashboard.tsx"), read("config/property.ts")]);
   assert.match(home, /getPublishedProperties/);
   assert.match(home, /property\.location/);
   assert.match(search, /type="range"/);
   assert.match(search, /Todas las poblaciones/);
-  assert.match(contact, /<option>Casa<\/option><option>Piso<\/option><option>Local<\/option><option>Terreno<\/option><option>Otros<\/option>/);
+  assert.match(propertyConfig, /\["Casa", "Piso", "Local", "Terreno", "Otros"\]/);
+  assert.match(search, /propertyTypes\.map/);
+  assert.match(contact, /propertyTypes\.map/);
+  assert.match(explorer, /propertyTypes\.map/);
+  assert.match(admin, /propertyTypes\.map/);
   assert.match(contact, /Municipio o zona de Catalunya/);
   assert.match(contact, /Explícanos tu situación/);
 });

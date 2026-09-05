@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { PropertyCard } from "./PropertyCard";
 import type { Property } from "../types/property";
+import { propertyTypes } from "../config/property";
 
 interface PropertyExplorerProps {
   initialProperties: Property[];
@@ -71,7 +72,7 @@ export function PropertyExplorer({ initialProperties, initialLocation = "", init
       <aside className={filtersOpen ? "filters is-open" : "filters"} aria-label="Filtros de búsqueda">
         <div className="filters-heading"><strong>Filtrar</strong><button type="button" onClick={resetFilters}>Limpiar</button></div>
         <label>POBLACIÓN<input value={location} onChange={(event) => setLocation(event.target.value)} placeholder="Cubelles, Sitges…" /></label>
-        <label>TIPO DE INMUEBLE<select value={propertyType} onChange={(event) => setPropertyType(event.target.value)}><option value="">Todos</option><option>Piso</option><option>Casa</option><option>Chalet</option><option>Ático</option><option>Terreno</option></select></label>
+        <label>TIPO DE INMUEBLE<select value={propertyType} onChange={(event) => setPropertyType(event.target.value)}><option value="">Todos</option>{propertyTypes.map((item) => <option key={item}>{item}</option>)}</select></label>
         <label>PRECIO MÁXIMO<input value={maxPrice} onChange={(event) => setMaxPrice(event.target.value)} type="number" min="0" placeholder="Sin límite" /></label>
         <div className="two-fields">
           <label>HABITACIONES<select value={bedrooms} onChange={(event) => setBedrooms(event.target.value)}><option value="">Todas</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label>

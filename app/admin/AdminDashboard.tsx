@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../lib/supabase/client";
 import { formatPrice, propertyFromRow, propertyToRow, slugify, type Property, type PropertyInput, type PropertyStatus } from "../../types/property";
+import { propertyTypes } from "../../config/property";
 
 export interface AdminLead { id: string; name: string; lastName: string; email: string; phone: string; message: string; type: string; status: "new" | "contacted" | "closed"; createdAt: string; }
 
@@ -96,7 +97,7 @@ export function AdminDashboard({ email, initialProperties, initialLeads }: { ema
           <label className="admin-full">Título*<input value={form.title} onChange={(event) => update("title", event.target.value)} required /></label>
           <label className="admin-full">Dirección web<input value={form.slug} onChange={(event) => update("slug", event.target.value)} placeholder="Se genera desde el título" /></label>
           <label>Operación<select value={form.operation} onChange={(event) => update("operation", event.target.value as PropertyInput["operation"])}><option value="venta">Venta</option><option value="alquiler">Alquiler</option></select></label>
-          <label>Tipo<select value={form.propertyType} onChange={(event) => update("propertyType", event.target.value)}><option>Piso</option><option>Casa</option><option>Chalet</option><option>Ático</option><option>Terreno</option><option>Local</option></select></label>
+          <label>Tipo<select value={form.propertyType} onChange={(event) => update("propertyType", event.target.value)}>{propertyTypes.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label>Población*<input value={form.location} onChange={(event) => update("location", event.target.value)} required /></label><label>Provincia<input value={form.province} onChange={(event) => update("province", event.target.value)} /></label>
           <label>Precio (€)*<input type="number" min="0" value={form.price} onChange={(event) => update("price", Number(event.target.value))} required /></label><label>Superficie (m²)<input type="number" min="0" value={form.area} onChange={(event) => update("area", Number(event.target.value))} /></label>
           <label>Habitaciones<input type="number" min="0" value={form.bedrooms} onChange={(event) => update("bedrooms", Number(event.target.value))} /></label><label>Baños<input type="number" min="0" value={form.bathrooms} onChange={(event) => update("bathrooms", Number(event.target.value))} /></label>
