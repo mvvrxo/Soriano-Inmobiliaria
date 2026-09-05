@@ -91,19 +91,19 @@ Cada `git push` a `main` generará una nueva publicación.
 
 ## 6. Conectar el dominio administrado desde Microsoft 365
 
-El dominio que aparece en la captura es `sorianogrupoinmobiliario.com`. El correo facilitado usa `sorianogrupo.com`; confirma que quieres usar el primero para la web antes de tocar DNS.
+El dominio definitivo de la web es `sorianogrupo.com`, el mismo dominio que utiliza el correo de Jonathan.
 
 1. En Vercel abre el proyecto y entra en **Settings → Domains**.
-2. Añade `sorianogrupoinmobiliario.com` y después `www.sorianogrupoinmobiliario.com`.
-3. Elige como principal la versión que prefieras; normalmente el dominio sin `www`. Configura la otra para redirigir a la principal.
+2. Añade `sorianogrupo.com` y deja activada la opción para incluir la variante `www`.
+3. Configura `www.sorianogrupo.com` como principal y el dominio raíz como redirección permanente.
 4. Vercel mostrará los registros DNS exactos que necesita. Déjalos abiertos.
-5. En Microsoft 365 entra en **Configuración → Dominios → sorianogrupoinmobiliario.com → Registros de DNS → Administrar DNS → Agregar registro**.
+5. En Microsoft 365 entra en **Configuración → Dominios → sorianogrupo.com → Registros de DNS → Agregar registro**.
 6. Añade los valores exactos mostrados por Vercel. Habitualmente serán:
 
-| Uso | Tipo | Nombre | Valor habitual |
+| Uso | Tipo | Nombre | Valor mostrado por Vercel |
 |---|---|---|---|
-| Dominio raíz | A | `@` | `76.76.21.21` |
-| Versión www | CNAME | `www` | `cname.vercel-dns-0.com` |
+| Dominio raíz | A | `@` | La dirección IP asignada al proyecto |
+| Versión www | CNAME | `www` | El destino `*.vercel-dns-*.com` asignado al proyecto |
 
 Los valores de la pantalla de Vercel mandan sobre esta tabla, porque Vercel puede asignar una configuración específica al proyecto.
 

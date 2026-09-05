@@ -50,4 +50,4 @@ npm test
 
 - Teléfono, WhatsApp, correo, dirección y redes: `config/site.ts`.
 - Identidad fiscal y textos definitivos: `app/legal`, `app/privacidad` y `app/cookies`.
-- Dominio canónico usado por sitemap/robots: `sorianogrupoinmobiliario.com`.
+- Dominio canónico usado por sitemap/robots: `www.sorianogrupo.com`.
