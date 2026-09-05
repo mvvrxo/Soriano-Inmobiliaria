@@ -1,0 +1,1 @@
+export default function LegalPage() { return <main className="legal-page site-shell"><p className="eyebrow">INFORMACIÓN LEGAL</p><h1>Aviso legal</h1><p>Esta es una plantilla informativa pendiente de completar con los datos fiscales y registrales de Soriano Grupo Inmobiliario antes de publicar la web.</p></main>; }

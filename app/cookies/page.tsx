@@ -1,0 +1,1 @@
+export default function CookiesPage() { return <main className="legal-page site-shell"><p className="eyebrow">INFORMACIÓN LEGAL</p><h1>Política de cookies</h1><p>Esta página debe completarse con la configuración de cookies que se adopte al publicar la web.</p></main>; }
