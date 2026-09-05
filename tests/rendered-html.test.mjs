@@ -14,7 +14,7 @@ test("persists contact intake in Supabase", async () => {
 
 test("keeps the public IA focused on home, buying, selling and contact", async () => {
   const [header, content, explorer, sitemap, detail, logo] = await Promise.all([read("components/Header.tsx"), read("config/content.ts"), read("components/PropertyExplorer.tsx"), read("app/sitemap.ts"), read("app/inmuebles/[slug]/page.tsx"), read("components/Footer.tsx")]);
-  assert.match(header, /\["Inicio", "\/"\], \["Comprar", "\/inmuebles"\], \["Vender", "\/vender"\]/);
+  assert.match(header, /\["Inicio", "\/"\], \["Catálogo", "\/inmuebles"\], \["Vender", "\/vender"\]/);
   assert.doesNotMatch(header, /Alquilar|Servicios|Nosotros/);
   assert.match(content, /Inmobiliaria en Cubelles/);
   assert.match(explorer, /feature-choice/);
@@ -22,6 +22,25 @@ test("keeps the public IA focused on home, buying, selling and contact", async (
   assert.doesNotMatch(sitemap, /servicios|nosotros/);
   assert.match(detail, /getPropertyBySlug/);
   assert.match(logo, /SORIANO_Grupo_Inmobiliario_logo_transparente\.png/);
+});
+
+test("offers data-driven locations, a budget slider and the requested valuation fields", async () => {
+  const [home, search, contact] = await Promise.all([read("app/page.tsx"), read("components/SearchBar.tsx"), read("components/ContactForm.tsx")]);
+  assert.match(home, /getPublishedProperties/);
+  assert.match(home, /property\.location/);
+  assert.match(search, /type="range"/);
+  assert.match(search, /Todas las poblaciones/);
+  assert.match(contact, /<option>Casa<\/option><option>Piso<\/option><option>Local<\/option><option>Terreno<\/option><option>Otros<\/option>/);
+  assert.match(contact, /Municipio o zona de Catalunya/);
+  assert.match(contact, /Explícanos tu situación/);
+});
+
+test("publishes privacy and cookie information", async () => {
+  const [layout, notice, privacy, cookies] = await Promise.all([read("app/layout.tsx"), read("components/CookieNotice.tsx"), read("app/privacidad/page.tsx"), read("app/cookies/page.tsx")]);
+  assert.match(layout, /CookieNotice/);
+  assert.match(notice, /No usamos cookies publicitarias ni de analítica/);
+  assert.match(privacy, /Supabase/);
+  assert.match(cookies, /cookies de publicidad, seguimiento ni analítica/);
 });
 
 test("provides protected property management", async () => {

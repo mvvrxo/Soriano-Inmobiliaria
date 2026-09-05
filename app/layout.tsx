@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./overrides.css";
 import { Footer } from "../components/Footer";
+import { CookieNotice } from "../components/CookieNotice";
 import { FloatingWhatsApp } from "../components/FloatingWhatsApp";
 import { Header } from "../components/Header";
 
@@ -13,4 +14,4 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", images: ["/og.png"] },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="es"><body><Header />{children}<Footer /><FloatingWhatsApp /></body></html>; }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="es"><body><Header />{children}<Footer /><FloatingWhatsApp /><CookieNotice /></body></html>; }

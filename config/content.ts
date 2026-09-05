@@ -9,7 +9,7 @@ export const editableCopy = {
     description: "Acompañamos a propietarios que quieren vender su vivienda y a personas que buscan comprar en Cubelles y la Costa del Garraf.",
   },
   buy: {
-    title: "Comprar vivienda",
+    title: "Catálogo de propiedades",
     description: "Te ayudamos a encontrar una vivienda que encaje con tu búsqueda, tu presupuesto y la zona que necesitas.",
     label: "BÚSQUEDA DE VIVIENDA",
   },
@@ -22,5 +22,4 @@ export const editableCopy = {
     title: "Contacto",
     description: "Cuéntanos qué necesitas y te responderemos con la información adecuada para tu caso.",
   },
-  footer: "Soriano Grupo Inmobiliario · Cubelles y Costa del Garraf.",
 } as const;

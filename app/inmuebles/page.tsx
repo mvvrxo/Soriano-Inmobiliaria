@@ -3,7 +3,7 @@ import { PropertyExplorer } from "../../components/PropertyExplorer";
 import { editableCopy } from "../../config/content";
 import { getPublishedProperties } from "../../services/propertyService";
 
-export const metadata: Metadata = { title: "Comprar", description: "Propiedades en comercialización en Cubelles y la Costa del Garraf." };
+export const metadata: Metadata = { title: "Catálogo", description: "Propiedades disponibles en Soriano Grupo Inmobiliario." };
 export default async function PropertiesPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const [query, properties] = await Promise.all([searchParams, getPublishedProperties()]);
   const get = (key: string) => typeof query[key] === "string" ? query[key] : "";
