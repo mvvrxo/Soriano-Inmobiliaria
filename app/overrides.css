@@ -1,5 +1,5 @@
-/* Final visual tuning: centered navigation and an image-led, quieter hero. */
-.header-inner{display:grid!important;grid-template-columns:1fr auto 1fr!important}.header-inner .logo{justify-self:start}.header-inner .primary-nav{justify-self:center;margin:0!important}.header-inner .header-cta{justify-self:end}
+/* Final visual tuning: navigation grouped beside the contact action. */
+.header-inner{display:grid!important;grid-template-columns:auto 1fr auto!important}.header-inner .logo{justify-self:start}.header-inner .primary-nav{justify-self:end;margin:0!important}.header-inner .header-cta{justify-self:end}
 .home-hero-clean{background:linear-gradient(90deg,rgba(23,21,20,.78),rgba(23,21,20,.52)),url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=88") center/cover!important;color:var(--paper);padding-top:78px!important}.hero-clean-grid{display:block!important;min-height:360px}.hero-clean-grid h1{max-width:720px}.hero-clean-grid>div>p:last-child{color:#f0e8e2;max-width:570px}.hero-clean-grid .eyebrow{color:#f0e8e2}.hero-search{transform:translateY(32px)}
 @media(max-width:720px){.header-inner{display:flex!important}.header-inner .primary-nav.is-open{display:flex!important}.home-hero-clean{padding-top:58px!important}.hero-clean-grid{min-height:0}.hero-clean-grid h1{font-size:51px}.hero-search{transform:translateY(23px)}}
 
@@ -35,3 +35,57 @@
 .cookie-actions button{border:0;background:var(--black);color:var(--paper);font:600 12px Montserrat,Arial,sans-serif;padding:14px 18px;cursor:pointer}
 body:has(.cookie-notice) .whatsapp{bottom:145px}
 @media(max-width:720px){.search-bar .budget-range-wrap{grid-template-columns:82px 1fr}.cookie-notice{grid-template-columns:1fr;gap:17px;bottom:13px;width:calc(100% - 26px);padding:19px}.cookie-actions{justify-content:space-between}body:has(.cookie-notice) .whatsapp{bottom:220px}.legal-page h1{font-size:44px}.legal-page h2{font-size:22px}}
+
+/* Contact details, social footer and responsive tablet/mobile layout. */
+.search-bar{box-shadow:7px 7px 0 var(--sand)}
+.footer-grid{grid-template-columns:1.2fr .65fr 1.15fr .65fr}
+.social-link{display:inline-flex!important;align-items:center;gap:10px;width:max-content}
+.social-link svg{width:23px;height:23px;flex:0 0 auto}
+.contact-data>a{font-size:14px;line-height:1.7;font-weight:500;overflow-wrap:anywhere}
+.contact-data>p:not(.eyebrow){margin-top:13px}
+
+@media(max-width:1024px){
+  .site-shell{width:min(1240px,calc(100% - 48px))}
+  .header-inner{gap:22px}
+  .primary-nav{gap:18px}
+  .search-bar{grid-template-columns:1fr 1fr}
+  .search-bar label:nth-of-type(2){border-right:0}
+  .search-bar label:nth-of-type(3){border-top:1px solid var(--line)}
+  .search-submit{min-height:68px}
+}
+
+@media(max-width:900px){
+  .home-intro,.sell-home-grid,.buy-home,.home-contact-grid,.owner-form-grid,.contact-page-grid{grid-template-columns:1fr}
+  .home-intro,.sell-home-grid,.buy-home,.home-contact-grid,.owner-form-grid,.contact-page-grid{gap:40px}
+  .home-intro>p,.buy-home>div>p:not(.eyebrow),.owner-form-grid>div>p:not(.eyebrow){max-width:620px}
+  .buy-home-side{max-width:500px;min-height:190px}
+  .contact-data{margin-bottom:0}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:45px 70px}
+}
+
+@media(min-width:721px) and (max-width:820px){
+  .header-inner{display:flex!important}
+  .header-inner .logo{margin-right:auto}
+  .primary-nav{display:none}
+  .primary-nav.is-open{display:flex;position:absolute;top:88px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--black);padding:22px 24px;flex-direction:column;align-items:flex-start}
+  .menu-button{display:block}
+}
+
+@media(max-width:720px){
+  .site-shell{width:min(100% - 38px,1240px)}
+  .search-bar{grid-template-columns:1fr 1fr;box-shadow:4px 4px 0 var(--sand)}
+  .search-bar label:nth-of-type(3),.search-submit{grid-column:1/-1}
+  .footer-grid{grid-template-columns:1fr}
+  .contact-data>a,.contact-data>p:not(.eyebrow){font-size:13px}
+}
+
+@media(max-width:420px){
+  .site-shell{width:calc(100% - 30px)}
+  .hero-clean-grid h1,.page-hero h1,.owner-hero-simple h1,.contact-page-hero h1{font-size:clamp(39px,12vw,48px)}
+  .search-bar{grid-template-columns:1fr}
+  .search-bar label,.search-bar label:nth-of-type(2),.search-bar label:nth-of-type(3),.search-submit{grid-column:1;border-right:0}
+  .search-bar label:nth-of-type(2){border-top:1px solid var(--line)}
+  .search-bar .budget-range-wrap{grid-template-columns:78px 1fr}
+  .contact-form{padding:24px 17px}
+  .cookie-actions{align-items:stretch;flex-direction:column}
+}

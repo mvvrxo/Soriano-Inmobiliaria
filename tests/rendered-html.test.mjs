@@ -47,6 +47,17 @@ test("publishes privacy and cookie information", async () => {
   assert.match(cookies, /cookies de publicidad, seguimiento ni analítica/);
 });
 
+test("publishes consistent contact and social details", async () => {
+  const [site, footer, contactPage, styles] = await Promise.all([read("config/site.ts"), read("components/Footer.tsx"), read("app/contacto/page.tsx"), read("app/overrides.css")]);
+  assert.match(site, /\+34 605 153 518/);
+  assert.match(site, /instagram\.com\/sorianogrupoi\//);
+  assert.match(footer, /Síguenos/);
+  assert.match(footer, /aria-label="Instagram de Soriano Grupo Inmobiliario"/);
+  assert.match(contactPage, /siteConfig\.phone/);
+  assert.match(styles, /@media\(max-width:1024px\)/);
+  assert.match(styles, /@media\(max-width:420px\)/);
+});
+
 test("provides protected property management", async () => {
   const [dashboard, adminPage, migration] = await Promise.all([read("app/admin/AdminDashboard.tsx"), read("app/admin/page.tsx"), read("supabase/migrations/202609050001_initial_schema.sql")]);
   assert.match(dashboard, /Guardar vivienda/);
