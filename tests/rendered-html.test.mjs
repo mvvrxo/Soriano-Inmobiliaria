@@ -61,7 +61,8 @@ test("integrates the home navigation into the cover", async () => {
   assert.match(layout, /SORIANO_Grupo_Inmobiliario_logo_transparente\.png/);
   assert.doesNotMatch(layout, /Inmobiliaria en Cubelles para propietarios y compradores/);
   assert.match(await read("app/overrides.css"), /\.inner-site-header\{background:var\(--cream\);border-bottom:1px solid var\(--black\)\}/);
-  assert.match(await read("app/overrides.css"), /\.inner-site-header \.menu-button\{display:block/);
+  assert.match(await read("app/overrides.css"), /\.inner-site-header \.menu-button\{display:none\}/);
+  assert.match(await read("app/overrides.css"), /\.inner-site-header \.primary-nav \.nav-contact-link\{[^}]*background:var\(--black\)/);
   assert.match(layout, /Montserrat/);
   assert.match(layout, /montserrat\.variable/);
   assert.match(await read("app/overrides.css"), /font-family:var\(--font-montserrat\)/);
