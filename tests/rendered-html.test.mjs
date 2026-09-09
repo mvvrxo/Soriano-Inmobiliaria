@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
@@ -45,6 +45,14 @@ test("publishes privacy and cookie information", async () => {
   assert.match(notice, /No usamos cookies publicitarias ni de analítica/);
   assert.match(privacy, /Supabase/);
   assert.match(cookies, /cookies de publicidad, seguimiento ni analítica/);
+});
+
+test("selects a legible favicon for each color scheme", async () => {
+  const layout = await read("app/layout.tsx");
+  await Promise.all([access(new URL("public/favicon/favicon-transparent.png", root)), access(new URL("public/favicon/favicon-white.png", root))]);
+  assert.match(layout, /favicon-transparent\.png.*prefers-color-scheme: light/);
+  assert.match(layout, /favicon-white\.png.*prefers-color-scheme: dark/);
+  assert.match(layout, /rel="apple-touch-icon"/);
 });
 
 test("publishes consistent contact and social details", async () => {

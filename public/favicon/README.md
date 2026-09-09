@@ -2,7 +2,10 @@
 
 Coloca en esta carpeta los iconos públicos de la web.
 
-El favicon activo es `favicon-transparent.png`, una versión cuadrada con fondo transparente.
+La web selecciona automáticamente dos versiones cuadradas con fondo transparente:
+
+- `favicon-transparent.png`: S negra para navegadores en modo claro.
+- `favicon-white.png`: S blanca para navegadores en modo oscuro.
 
 Archivos recomendados:
 
