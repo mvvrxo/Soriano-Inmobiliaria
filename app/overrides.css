@@ -238,6 +238,16 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
   .inner-site-header .primary-nav .nav-contact-link{padding:9px 6px}
 }
 
+/* High-contrast phone navigation on every page. */
+@media(max-width:720px){
+  .home-site-header .primary-nav,.inner-site-header .primary-nav{background:var(--paper);color:var(--ink);border:1px solid var(--black);box-shadow:4px 4px 0 var(--brown)}
+  .home-site-header .primary-nav a,.inner-site-header .primary-nav a{color:var(--ink);text-shadow:none}
+  .home-site-header .primary-nav a[aria-current="page"]:not(.nav-contact-link),.inner-site-header .primary-nav a[aria-current="page"]:not(.nav-contact-link){background:var(--sand);color:var(--ink)}
+  .home-site-header .primary-nav .nav-contact-link,.inner-site-header .primary-nav .nav-contact-link{background:var(--black);color:var(--paper);font-weight:700}
+  .home-site-header .primary-nav .nav-contact-link:hover,.home-site-header .primary-nav .nav-contact-link[aria-current="page"],.inner-site-header .primary-nav .nav-contact-link:hover,.inner-site-header .primary-nav .nav-contact-link[aria-current="page"]{background:var(--brown);color:var(--paper)}
+  .home-site-header .primary-nav a:focus-visible,.inner-site-header .primary-nav a:focus-visible{outline:2px solid var(--brown);outline-offset:-2px}
+}
+
 @media(prefers-reduced-motion:reduce){
   .menu-button span,.home-site-header .primary-nav,.home-site-header .primary-nav a,.inner-site-header .primary-nav,.inner-site-header .primary-nav a{transition:none}
 }
