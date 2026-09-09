@@ -2,6 +2,8 @@
 
 Coloca en esta carpeta los iconos públicos de la web.
 
+El favicon activo es `favicon-transparent.png`, una versión cuadrada con fondo transparente.
+
 Archivos recomendados:
 
 - `favicon.ico`
