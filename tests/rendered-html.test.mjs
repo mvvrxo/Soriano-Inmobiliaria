@@ -17,7 +17,7 @@ test("keeps the public IA focused on home, buying, selling and contact", async (
   assert.match(header, /\["Inicio", "\/"\], \["Catálogo", "\/inmuebles"\], \["Vender", "\/vender"\]/);
   assert.doesNotMatch(header, /Alquilar|Servicios|Nosotros/);
   assert.match(content, /Inmobiliaria en Cubelles/);
-  assert.match(explorer, /feature-choice/);
+  assert.doesNotMatch(explorer, /feature-choice|CARACTERÍSTICAS/);
   assert.match(sitemap, /"\/contacto"/);
   assert.doesNotMatch(sitemap, /servicios|nosotros/);
   assert.match(detail, /getPropertyBySlug/);
@@ -29,14 +29,43 @@ test("offers data-driven locations, a budget slider and the requested valuation 
   assert.match(home, /getPublishedProperties/);
   assert.match(home, /property\.location/);
   assert.match(search, /type="range"/);
+  assert.match(search, /new URLSearchParams\(\{ operation \}\)/);
+  assert.match(search, /Compra/);
+  assert.match(search, /Alquiler/);
   assert.match(search, /Todas las poblaciones/);
   assert.match(propertyConfig, /\["Casa", "Piso", "Local", "Terreno", "Otros"\]/);
+  assert.match(propertyConfig, /alquiler: \{ min: 500, max: 3_100, step: 100 \}/);
   assert.match(search, /propertyTypes\.map/);
   assert.match(contact, /propertyTypes\.map/);
   assert.match(explorer, /propertyTypes\.map/);
+  assert.match(explorer, /property\.operation === operation/);
+  assert.match(explorer, /COMPRA O ALQUILER/);
   assert.match(admin, /propertyTypes\.map/);
   assert.match(contact, /Municipio o zona de Catalunya/);
   assert.match(contact, /Explícanos tu situación/);
+});
+
+test("integrates the home navigation into the cover", async () => {
+  const [home, header, footer, layout] = await Promise.all([read("app/page.tsx"), read("components/Header.tsx"), read("components/Footer.tsx"), read("app/layout.tsx")]);
+  assert.match(home, /className="visually-hidden"/);
+  assert.doesNotMatch(home, /buy-home-side|CUÉNTANOS QUÉ BUSCAS|La búsqueda está preparada/);
+  assert.match(header, /pathname === "\/"/);
+  assert.match(header, /home-site-header/);
+  assert.match(header, /inner-site-header/);
+  assert.match(header, /aria-current=/);
+  assert.match(header, /\["Contactar", "\/contacto"\]/);
+  assert.match(header, /<span \/><span \/><span \/>/);
+  assert.match(header, /menu-button is-open/);
+  assert.match(header, /<svg aria-hidden="true"/);
+  assert.doesNotMatch(footer, /siteConfig\.schedule/);
+  assert.match(layout, /SORIANO_Grupo_Inmobiliario_logo_transparente\.png/);
+  assert.doesNotMatch(layout, /Inmobiliaria en Cubelles para propietarios y compradores/);
+  assert.match(await read("app/overrides.css"), /\.inner-site-header\{background:var\(--cream\);border-bottom:1px solid var\(--black\)\}/);
+  assert.match(await read("app/overrides.css"), /\.inner-site-header \.menu-button\{display:none\}/);
+  assert.match(await read("app/overrides.css"), /\.inner-site-header \.primary-nav \.nav-contact-link\{[^}]*background:var\(--black\)/);
+  assert.match(layout, /Montserrat/);
+  assert.match(layout, /montserrat\.variable/);
+  assert.match(await read("app/overrides.css"), /font-family:var\(--font-montserrat\)/);
 });
 
 test("publishes privacy and cookie information", async () => {
