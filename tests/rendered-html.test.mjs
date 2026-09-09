@@ -64,6 +64,8 @@ test("integrates the home navigation into the cover", async () => {
   assert.doesNotMatch(layout, /Inmobiliaria en Cubelles para propietarios y compradores/);
   assert.match(await read("app/overrides.css"), /\.inner-site-header\{background:var\(--cream\);border-bottom:1px solid var\(--black\)\}/);
   assert.match(await read("app/overrides.css"), /\.inner-site-header \.menu-button\{display:none\}/);
+  assert.match(await read("app/overrides.css"), /Every phone header uses the same hamburger disclosure/);
+  assert.match(await read("app/overrides.css"), /\.inner-site-header \.menu-button\{display:block;color:var\(--ink\)/);
   assert.match(await read("app/overrides.css"), /\.inner-site-header \.primary-nav \.nav-contact-link\{[^}]*background:var\(--black\)/);
   assert.match(layout, /Montserrat/);
   assert.match(layout, /montserrat\.variable/);
