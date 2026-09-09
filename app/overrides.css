@@ -217,6 +217,27 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
   .home-site-header .primary-nav a{font-size:11px;letter-spacing:0}
 }
 
+/* Every phone header uses the same hamburger disclosure. */
+@media(max-width:720px){
+  .inner-site-header{height:76px}
+  .inner-site-header .header-inner{min-height:0;height:100%;flex-wrap:nowrap;padding:0;gap:20px}
+  .inner-site-header .menu-button{display:block;color:var(--ink);cursor:pointer}
+  .inner-site-header .primary-nav{display:flex!important;position:absolute;top:calc(100% + 7px);right:0;left:auto;order:initial;width:100%;padding:6px;background:rgba(23,21,20,.96);color:var(--paper);border:1px solid var(--black);box-shadow:none;flex-direction:row;align-items:center;justify-content:space-between;gap:2px;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px) scaleX(.92);transform-origin:right center;transition:opacity .25s ease,transform .32s cubic-bezier(.22,1,.36,1),visibility 0s linear .32s}
+  .inner-site-header .primary-nav.is-open{display:flex!important;position:absolute;opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scaleX(1);transition-delay:0s}
+  .inner-site-header .primary-nav a{padding:10px 7px;color:var(--paper);font-size:11px;letter-spacing:0;opacity:0;transform:translateX(8px);transition:opacity .18s ease,transform .25s ease,background-color .18s ease}
+  .inner-site-header .primary-nav.is-open a{opacity:1;transform:translateX(0)}
+  .inner-site-header .primary-nav .nav-contact-link{padding:10px 9px;background:var(--brown);color:var(--paper)}
+  .inner-site-header .primary-nav.is-open a:nth-child(1){transition-delay:.04s}
+  .inner-site-header .primary-nav.is-open a:nth-child(2){transition-delay:.08s}
+  .inner-site-header .primary-nav.is-open a:nth-child(3){transition-delay:.12s}
+  .inner-site-header .primary-nav.is-open a:nth-child(4){transition-delay:.16s}
+}
+
+@media(max-width:380px){
+  .inner-site-header .primary-nav a{padding:9px 4px;font-size:10px}
+  .inner-site-header .primary-nav .nav-contact-link{padding:9px 6px}
+}
+
 @media(prefers-reduced-motion:reduce){
   .menu-button span,.home-site-header .primary-nav,.home-site-header .primary-nav a,.inner-site-header .primary-nav,.inner-site-header .primary-nav a{transition:none}
 }
