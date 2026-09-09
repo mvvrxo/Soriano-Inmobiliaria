@@ -66,6 +66,8 @@ test("integrates the home navigation into the cover", async () => {
   assert.match(await read("app/overrides.css"), /\.inner-site-header \.menu-button\{display:none\}/);
   assert.match(await read("app/overrides.css"), /Every phone header uses the same hamburger disclosure/);
   assert.match(await read("app/overrides.css"), /\.inner-site-header \.menu-button\{display:block;color:var\(--ink\)/);
+  assert.match(await read("app/overrides.css"), /High-contrast phone navigation on every page/);
+  assert.match(await read("app/overrides.css"), /\.home-site-header \.primary-nav,.inner-site-header \.primary-nav\{background:var\(--paper\);color:var\(--ink\)/);
   assert.match(await read("app/overrides.css"), /\.inner-site-header \.primary-nav \.nav-contact-link\{[^}]*background:var\(--black\)/);
   assert.match(layout, /Montserrat/);
   assert.match(layout, /montserrat\.variable/);
