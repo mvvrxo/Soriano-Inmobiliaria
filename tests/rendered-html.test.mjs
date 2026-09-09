@@ -36,6 +36,8 @@ test("offers data-driven locations, a budget slider and the requested valuation 
   assert.match(propertyConfig, /\["Casa", "Piso", "Local", "Terreno", "Otros"\]/);
   assert.match(propertyConfig, /alquiler: \{ min: 500, max: 3_100, step: 100 \}/);
   assert.match(search, /propertyTypes\.map/);
+  assert.match(await read("app/overrides.css"), /Phone search: one predictable column/);
+  assert.match(await read("app/overrides.css"), /\.search-bar\{grid-template-columns:minmax\(0,1fr\);width:100%/);
   assert.match(contact, /propertyTypes\.map/);
   assert.match(explorer, /propertyTypes\.map/);
   assert.match(explorer, /property\.operation === operation/);
