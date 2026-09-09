@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import "./overrides.css";
 import { Footer } from "../components/Footer";
 import { CookieNotice } from "../components/CookieNotice";
 import { FloatingWhatsApp } from "../components/FloatingWhatsApp";
 import { Header } from "../components/Header";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sorianogrupo.com"),
@@ -15,4 +22,4 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Soriano Grupo Inmobiliario", description: "", images: ["/logos/SORIANO_Grupo_Inmobiliario_logo_transparente.png"] },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="es"><body><Header />{children}<Footer /><FloatingWhatsApp /><CookieNotice /></body></html>; }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="es"><body className={montserrat.variable}><Header />{children}<Footer /><FloatingWhatsApp /><CookieNotice /></body></html>; }

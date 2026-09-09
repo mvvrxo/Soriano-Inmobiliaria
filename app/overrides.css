@@ -1,4 +1,11 @@
 /* Final visual tuning: navigation grouped beside the contact action. */
+html body{font-family:var(--font-montserrat),Arial,sans-serif}
+html body button,html body input,html body select,html body textarea{font-family:inherit!important}
+h1,h2,h3,h4,h5,h6,p,a,label,span,strong,small{font-family:inherit}
+h1,h2,h3{font-style:normal}
+h1,h2{font-weight:500}
+h3{font-weight:600}
+.eyebrow,.footer-title,.search-bar label>span,.filters>label,.two-fields label,.contact-form label,.admin-form label,.admin-login-card label{font-weight:600;letter-spacing:.65px}
 .header-inner{display:grid!important;grid-template-columns:auto 1fr auto!important}.header-inner .logo{justify-self:start}.header-inner .primary-nav{justify-self:end;margin:0!important}.header-inner .header-cta{justify-self:end}
 .home-hero-clean{background:linear-gradient(90deg,rgba(23,21,20,.78),rgba(23,21,20,.52)),url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=88") center/cover!important;color:var(--paper);padding-top:78px!important}.hero-clean-grid{display:block!important;min-height:360px}.hero-clean-grid h1{max-width:720px}.hero-clean-grid>div>p:last-child{color:#f0e8e2;max-width:570px}.hero-clean-grid .eyebrow{color:#f0e8e2}.hero-search{transform:translateY(32px)}
 @media(max-width:720px){.header-inner{display:flex!important}.header-inner .primary-nav.is-open{display:flex!important}.home-hero-clean{padding-top:58px!important}.hero-clean-grid{min-height:0}.hero-clean-grid h1{font-size:51px}.hero-search{transform:translateY(23px)}}
@@ -201,8 +208,7 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
 }
 
 /* Desktop and tablet expose navigation; only phones use the disclosure. */
-.primary-nav a{font-family:Montserrat,Arial,sans-serif;font-weight:600;letter-spacing:.15px}
-button,input,select,textarea{font-family:Montserrat,Arial,sans-serif}
+.primary-nav a{font-family:inherit;font-weight:600;letter-spacing:.15px}
 
 @media(min-width:721px){
   .home-site-header .menu-button,.inner-site-header .menu-button{display:none}
