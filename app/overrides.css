@@ -201,16 +201,28 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
 }
 
 /* Desktop and tablet expose navigation; only phones use the disclosure. */
+.primary-nav a{font-family:Montserrat,Arial,sans-serif;font-weight:600;letter-spacing:.15px}
+button,input,select,textarea{font-family:Montserrat,Arial,sans-serif}
+
 @media(min-width:721px){
   .home-site-header .menu-button,.inner-site-header .menu-button{display:none}
   .home-site-header .primary-nav,.home-site-header .primary-nav.is-open,.inner-site-header .primary-nav,.inner-site-header .primary-nav.is-open{display:flex!important;position:static;width:auto;padding:0;background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;flex-direction:row;align-items:center;gap:26px;opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:none}
   .home-site-header .primary-nav{color:var(--paper)}
   .inner-site-header .primary-nav{color:var(--ink)}
-  .home-site-header .primary-nav a,.inner-site-header .primary-nav a{padding:10px 0;opacity:1;transform:none;text-shadow:none;transition:color .18s ease}
-  .home-site-header .primary-nav a{color:var(--paper);text-shadow:0 1px 10px rgba(0,0,0,.65)}
+  .home-site-header .primary-nav a,.inner-site-header .primary-nav a{padding:11px 0;font-size:13px;font-weight:600;opacity:1;transform:none;text-shadow:none;transition:color .18s ease}
+  .home-site-header .primary-nav a{color:var(--paper);text-shadow:0 1px 12px rgba(0,0,0,.92),0 0 3px rgba(0,0,0,.65)}
   .home-site-header .primary-nav a::after{background:var(--paper)}
   .home-site-header .nav-contact-link,.inner-site-header .nav-contact-link{display:block}
   .inner-site-header .primary-nav a[aria-current="page"]{color:var(--brown);font-weight:700}
+  .home-site-header .primary-nav a[aria-current="page"]::after,.inner-site-header .primary-nav a[aria-current="page"]::after{width:100%}
+}
+
+@media(max-width:720px){
+  .home-site-header .primary-nav a,.inner-site-header .primary-nav a{font-size:12px;font-weight:600;letter-spacing:0}
+}
+
+@media(max-width:420px){
+  .home-site-header .primary-nav a,.inner-site-header .primary-nav a{font-size:11px;letter-spacing:0}
 }
 
 @media(prefers-reduced-motion:reduce){
