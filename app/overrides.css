@@ -220,3 +220,21 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
 @media(prefers-reduced-motion:reduce){
   .menu-button span,.home-site-header .primary-nav,.home-site-header .primary-nav a,.inner-site-header .primary-nav,.inner-site-header .primary-nav a{transition:none}
 }
+
+/* Phone search: one predictable column for all five controls. */
+@media(max-width:720px){
+  .hero-search{transform:translateY(20px)}
+  .search-bar{grid-template-columns:minmax(0,1fr);width:100%;box-shadow:4px 4px 0 var(--sand)}
+  .search-bar>label,.search-bar>label:nth-of-type(2),.search-bar>label:nth-of-type(3),.search-bar>label:nth-of-type(4){grid-column:1/-1!important;padding:14px 16px;border-top:0;border-right:0!important;border-bottom:1px solid var(--line)}
+  .search-bar select{min-height:28px;font-size:16px}
+  .search-bar .budget-range-wrap{grid-template-columns:96px minmax(0,1fr);gap:14px;width:100%}
+  .search-bar .budget-value{min-width:0;font-size:13px;white-space:nowrap}
+  .search-bar input[type="range"]{min-width:0;width:100%}
+  .search-bar .search-submit{grid-column:1/-1;min-height:54px;padding:16px 18px;font-size:13px}
+}
+
+@media(max-width:360px){
+  .search-bar>label,.search-bar>label:nth-of-type(2),.search-bar>label:nth-of-type(3),.search-bar>label:nth-of-type(4){padding:12px 13px}
+  .search-bar .budget-range-wrap{grid-template-columns:88px minmax(0,1fr);gap:10px}
+  .search-bar .budget-value{font-size:12px}
+}
