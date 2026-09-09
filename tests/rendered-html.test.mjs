@@ -49,8 +49,10 @@ test("integrates the home navigation into the cover", async () => {
   const [home, header, footer, layout] = await Promise.all([read("app/page.tsx"), read("components/Header.tsx"), read("components/Footer.tsx"), read("app/layout.tsx")]);
   assert.match(home, /className="visually-hidden"/);
   assert.doesNotMatch(home, /buy-home-side|CUÉNTANOS QUÉ BUSCAS|La búsqueda está preparada/);
-  assert.match(header, /usePathname\(\) === "\/"/);
+  assert.match(header, /pathname === "\/"/);
   assert.match(header, /home-site-header/);
+  assert.match(header, /inner-site-header/);
+  assert.match(header, /aria-current=/);
   assert.match(header, /\["Contactar", "\/contacto"\]/);
   assert.match(header, /<span \/><span \/><span \/>/);
   assert.match(header, /menu-button is-open/);
