@@ -60,6 +60,8 @@ test("integrates the home navigation into the cover", async () => {
   assert.doesNotMatch(footer, /siteConfig\.schedule/);
   assert.match(layout, /SORIANO_Grupo_Inmobiliario_logo_transparente\.png/);
   assert.doesNotMatch(layout, /Inmobiliaria en Cubelles para propietarios y compradores/);
+  assert.match(await read("app/overrides.css"), /@media\(min-width:721px\)/);
+  assert.match(await read("app/overrides.css"), /\.home-site-header \.menu-button,.inner-site-header \.menu-button\{display:none\}/);
 });
 
 test("publishes privacy and cookie information", async () => {
