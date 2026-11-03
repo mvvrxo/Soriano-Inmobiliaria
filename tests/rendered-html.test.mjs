@@ -5,11 +5,58 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const read = (path) => readFile(new URL(path, root), "utf8");
 
-test("persists contact intake in Supabase", async () => {
-  const [leadService, migration] = await Promise.all([read("services/contactService.ts"), read("supabase/migrations/202609050001_initial_schema.sql")]);
-  assert.match(leadService, /from\("leads"\)\.insert/);
+test("sends every form through the server, stores it and emails it", async () => {
+  const [leadService, route, email, resend, form, migration] = await Promise.all([read("services/contactService.ts"), read("app/api/contact/route.ts"), read("lib/leads/email.ts"), read("lib/email/resend.ts"), read("components/ContactForm.tsx"), read("supabase/migrations/202609050001_initial_schema.sql")]);
+  assert.match(leadService, /fetch\("\/api\/contact"/);
+  assert.doesNotMatch(leadService, /createClient/);
+  assert.match(route, /from\("leads"\)\.insert/);
+  assert.doesNotMatch(route, /\.insert\([\s\S]*?\)\s*\.select/);
+  assert.match(route, /sendEmail\(/);
+  assert.match(resend, /info@sorianogrupo\.com/);
+  assert.match(resend, /process\.env\.RESEND_API_KEY/);
+  assert.match(email, /reply_?[tT]o|replyTo/);
+  assert.match(email, /escapeHtml/);
+  assert.match(form, /name="website"/);
+  assert.match(form, /submissionId/);
+  assert.match(form, /disabled=\{status === "sending"\}/);
+  assert.match(form, /href="\/privacidad"/);
   assert.match(migration, /enable row level security/);
   assert.match(migration, /Visitors can send enquiries/);
+});
+
+test("validates forms and rejects bots on the server", async () => {
+  const validate = await read("lib/leads/validate.ts");
+  assert.match(validate, /EMAIL_PATTERN/);
+  assert.match(validate, /MIN_FILL_TIME_MS/);
+  assert.match(validate, /body\.privacy !== true/);
+  assert.match(validate, /type === "valuation" && !phone/);
+});
+
+test("ships no demo listings or stock photos", async () => {
+  const [service, styles, cleanup] = await Promise.all([read("services/propertyService.ts"), read("app/overrides.css"), read("supabase/migrations/202611030002_property_details_and_cleanup.sql")]);
+  assert.doesNotMatch(service, /demoProperties|unsplash/);
+  assert.doesNotMatch(styles, /images\.unsplash\.com/);
+  assert.match(cleanup, /delete from public\.properties/);
+  assert.match(cleanup, /energy_rating/);
+});
+
+test("offers a cookie choice with equal accept and reject options", async () => {
+  const [notice, footer, consent] = await Promise.all([read("components/CookieNotice.tsx"), read("components/Footer.tsx"), read("lib/cookieConsent.ts")]);
+  assert.match(notice, /Rechazar/);
+  assert.match(notice, /Aceptar todas/);
+  assert.match(notice, /Configurar/);
+  assert.match(footer, /CookieSettingsButton/);
+  assert.match(consent, /analytics: boolean/);
+});
+
+test("legal pages never invent company data", async () => {
+  const [legal, privacy, config] = await Promise.all([read("app/legal/page.tsx"), read("app/privacidad/page.tsx"), read("config/legal.ts")]);
+  assert.match(legal, /LSSI-CE/);
+  assert.match(legal, /AICAT/);
+  assert.match(privacy, /RGPD/);
+  assert.match(privacy, /LOPDGDD/);
+  assert.match(config, /holderName: ""|holderName: "[^"]+"/);
+  assert.match(legal, /LegalValue/);
 });
 
 test("keeps the public IA focused on home, buying, selling and contact", async () => {

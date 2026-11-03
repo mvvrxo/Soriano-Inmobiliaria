@@ -1,20 +1,20 @@
-import type { Lead } from "../types/lead";
-import { createClient } from "../lib/supabase/client";
+import type { LeadSubmission } from "../types/lead";
 
-export async function submitLead(lead: Lead): Promise<{ id: string }> {
-  const supabase = createClient();
-  const { data, error } = await supabase.from("leads").insert({
-    type: lead.type,
-    name: lead.name,
-    last_name: lead.lastName || "",
-    email: lead.email,
-    phone: lead.phone || "",
-    message: lead.message || "",
-    property_id: lead.propertyId || null,
-    source: lead.source,
-    contact_type: lead.contactType || "",
-    metadata: lead.metadata || {},
-  }).select("id").single();
-  if (error) throw error;
-  return { id: String(data.id) };
+/**
+ * Sends a form to /api/contact. The server stores it in Supabase and emails it
+ * to info@sorianogrupo.com. Resolves only when the email was handed to the provider.
+ */
+export async function submitLead(lead: LeadSubmission): Promise<void> {
+  let response: Response;
+  try {
+    response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead),
+    });
+  } catch {
+    throw new Error("No hay conexión. Comprueba tu conexión a internet e inténtalo de nuevo.");
+  }
+  const data = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+  if (!response.ok || !data?.ok) throw new Error(data?.error || "No hemos podido enviar tu solicitud. Inténtalo de nuevo.");
 }

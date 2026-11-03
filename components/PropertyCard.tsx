@@ -1,5 +1,5 @@
 import Link from "./Link";
-import { formatPrice, type Property } from "../types/property";
+import { formatPrice, propertyFacts, type Property } from "../types/property";
 
 export function PropertyCard({ property }: { property: Property }) {
   return <article className="property-card">
@@ -11,7 +11,7 @@ export function PropertyCard({ property }: { property: Property }) {
     <div className="property-content">
       <span className="property-place">{property.propertyType} · {property.location}</span>
       <h3><Link href={`/inmuebles/${property.slug}`}>{property.title}</Link></h3>
-      <div className="property-facts"><span>{property.bedrooms} hab.</span><span>{property.bathrooms} baños</span><span>{property.area} m²</span></div>
+      {propertyFacts(property, true).length > 0 && <div className="property-facts">{propertyFacts(property, true).map((fact) => <span key={fact.label}>{fact.value} {fact.label}</span>)}</div>}
       <div className="property-card-footer"><strong>{formatPrice(property)}</strong><Link href={`/inmuebles/${property.slug}`} aria-label={`Ver ${property.title}`}>→</Link></div>
     </div>
   </article>;

@@ -4,6 +4,7 @@ import { editableCopy } from "../config/content";
 import { getPublishedProperties } from "../services/propertyService";
 
 export const revalidate = 0;
+export const metadata = { alternates: { canonical: "/" } };
 
 export default async function Home() {
   const properties = await getPublishedProperties();
