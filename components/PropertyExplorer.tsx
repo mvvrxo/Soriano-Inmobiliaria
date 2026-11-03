@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "./Link";
 import { PropertyCard } from "./PropertyCard";
 import type { Property, PropertyOperation } from "../types/property";
 import { budgetRanges, propertyTypes } from "../config/property";
@@ -89,7 +90,7 @@ export function PropertyExplorer({ initialProperties, initialLocation = "", init
         <button className="filter-close" type="button" onClick={() => setFiltersOpen(false)}>Ver {properties.length} resultados</button>
       </aside>
       <div>
-        {properties.length ? <div className="property-grid">{properties.map((property) => <PropertyCard key={property.id} property={property} />)}</div> : <div className="empty-state"><span>⌂</span><h2>No hay coincidencias</h2><p>Prueba a ampliar la zona o a quitar algún filtro. También puedes contarnos qué vivienda buscas y te ayudaremos personalmente.</p><button className="button-black" type="button" onClick={resetFilters}>Limpiar filtros <span>→</span></button></div>}
+        {properties.length ? <div className="property-grid">{properties.map((property) => <PropertyCard key={property.id} property={property} />)}</div> : initialProperties.length === 0 ? <div className="empty-state"><span>⌂</span><h2>Estamos actualizando nuestra cartera</h2><p>En breve publicaremos aquí las viviendas disponibles. Si buscas algo concreto, cuéntanoslo y te avisaremos personalmente.</p><Link className="button-black" href="/contacto">Contactar <span>→</span></Link></div> : <div className="empty-state"><span>⌂</span><h2>No hay coincidencias</h2><p>Prueba a ampliar la zona o a quitar algún filtro. También puedes contarnos qué vivienda buscas y te ayudaremos personalmente.</p><button className="button-black" type="button" onClick={resetFilters}>Limpiar filtros <span>→</span></button></div>}
       </div>
     </div>
   </section>;

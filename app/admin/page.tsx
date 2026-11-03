@@ -24,7 +24,7 @@ export default async function AdminPage() {
   ]);
 
   const leads: AdminLead[] = (leadRows || []).map((lead) => ({
-    id: String(lead.id), name: String(lead.name), lastName: String(lead.last_name || ""), email: String(lead.email), phone: String(lead.phone || ""), message: String(lead.message || ""), type: String(lead.type), status: String(lead.status) as AdminLead["status"], createdAt: String(lead.created_at),
+    id: String(lead.id), name: String(lead.name), lastName: String(lead.last_name || ""), email: String(lead.email), phone: String(lead.phone || ""), message: String(lead.message || ""), type: String(lead.type), reason: String(lead.contact_type || ""), propertyId: String(lead.property_id || ""), details: Object.fromEntries(Object.entries((lead.metadata || {}) as Record<string, unknown>).map(([key, value]) => [key, String(value ?? "")])), status: String(lead.status) as AdminLead["status"], createdAt: String(lead.created_at),
   }));
 
   return <AdminDashboard email={email} initialProperties={(propertyRows || []).map((row) => propertyFromRow(row))} initialLeads={leads} />;

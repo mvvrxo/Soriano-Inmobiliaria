@@ -6,7 +6,8 @@ Web inmobiliaria construida con Next.js, Supabase y preparada para Vercel. Conse
 
 - Web pública responsive con Inicio, Comprar, Vender y Contacto.
 - Catálogo con filtros, ordenación y ficha individual de cada vivienda.
-- Formularios conectados a la tabla `leads` de Supabase.
+- Formularios que envían cada solicitud por correo a info@sorianogrupo.com (Resend) y guardan una copia en la tabla `leads` de Supabase.
+- Gestor de cookies con aceptar, rechazar y configurar.
 - Panel privado en `/admin` para crear, editar, publicar, reservar y eliminar viviendas.
 - Subida de fotografías a Supabase Storage.
 - Gestión del estado de las consultas recibidas.
@@ -22,20 +23,18 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Abre `http://localhost:3000`. Sin `.env.local`, la parte pública muestra tres viviendas de demostración. El panel y los formularios requieren Supabase.
+Abre `http://localhost:3000`. Sin `.env.local`, el catálogo aparece vacío (no hay viviendas de demostración). El panel requiere Supabase y los formularios requieren Resend.
 
 ## Variables de entorno
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://TU-PROYECTO.supabase.co
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=TU_CLAVE_PUBLICABLE
-```
+Consulta `.env.example`:
 
-La clave publicable es apta para el navegador porque el acceso real se protege en la base de datos con RLS. No añadas una `service_role` a este proyecto web.
+- `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: públicas; el acceso real se protege con RLS. No añadas una `service_role` a este proyecto web.
+- `RESEND_API_KEY`, `CONTACT_EMAIL_FROM` y `CONTACT_EMAIL_TO`: solo de servidor, para el envío de los formularios. Nunca les pongas el prefijo `NEXT_PUBLIC_`.
 
 ## Preparar la base de datos y publicar
 
-Sigue [GUIA_DESPLIEGUE.md](./GUIA_DESPLIEGUE.md). El esquema completo está en `supabase/migrations/202609050001_initial_schema.sql`.
+Sigue [GUIA_DESPLIEGUE.md](./GUIA_DESPLIEGUE.md). El esquema está en `supabase/migrations/` (aplica los archivos en orden).
 
 ## Comprobaciones
 
@@ -49,5 +48,5 @@ npm test
 ## Datos que deben revisarse antes de publicar
 
 - Teléfono, WhatsApp, correo, dirección y redes: `config/site.ts`.
-- Identidad fiscal y textos definitivos: `app/legal`, `app/privacidad` y `app/cookies`.
+- Datos fiscales del titular (razón social, NIF, domicilio, registro AICAT): `config/legal.ts`. Mientras falten, las páginas legales los muestran marcados como pendientes.
 - Dominio canónico usado por sitemap/robots: `www.sorianogrupo.com`.

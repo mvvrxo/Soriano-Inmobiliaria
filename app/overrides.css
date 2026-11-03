@@ -7,7 +7,7 @@ h1,h2{font-weight:500}
 h3{font-weight:600}
 .eyebrow,.footer-title,.search-bar label>span,.filters>label,.two-fields label,.contact-form label,.admin-form label,.admin-login-card label{font-weight:600;letter-spacing:.65px}
 .header-inner{display:grid!important;grid-template-columns:auto 1fr auto!important}.header-inner .logo{justify-self:start}.header-inner .primary-nav{justify-self:end;margin:0!important}.header-inner .header-cta{justify-self:end}
-.home-hero-clean{background:linear-gradient(90deg,rgba(23,21,20,.78),rgba(23,21,20,.52)),url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=88") center/cover!important;color:var(--paper);padding-top:78px!important}.hero-clean-grid{display:block!important;min-height:360px}.hero-clean-grid h1{max-width:720px}.hero-clean-grid>div>p:last-child{color:#f0e8e2;max-width:570px}.hero-clean-grid .eyebrow{color:#f0e8e2}.hero-search{transform:translateY(32px)}
+.home-hero-clean{background:linear-gradient(90deg,rgba(23,21,20,.78),rgba(23,21,20,.52)),url("/images/portada.jpg") center/cover!important;color:var(--paper);padding-top:78px!important}.hero-clean-grid{display:block!important;min-height:360px}.hero-clean-grid h1{max-width:720px}.hero-clean-grid>div>p:last-child{color:#f0e8e2;max-width:570px}.hero-clean-grid .eyebrow{color:#f0e8e2}.hero-search{transform:translateY(32px)}
 @media(max-width:720px){.header-inner{display:flex!important}.header-inner .primary-nav.is-open{display:flex!important}.home-hero-clean{padding-top:58px!important}.hero-clean-grid{min-height:0}.hero-clean-grid h1{font-size:51px}.hero-search{transform:translateY(23px)}}
 
 /* Property catalogue and detail pages, following the original Soriano palette. */
@@ -124,7 +124,7 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
 .home-site-header .primary-nav.is-open a:nth-child(3){transition-delay:.12s}
 .home-site-header .primary-nav.is-open a:nth-child(4){transition-delay:.16s}
 
-.home-hero-clean{padding-top:0!important;background:linear-gradient(90deg,rgba(23,21,20,.28),rgba(23,21,20,.12)),url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=88") center/cover!important}
+.home-hero-clean{padding-top:0!important;background:linear-gradient(90deg,rgba(23,21,20,.28),rgba(23,21,20,.12)),url("/images/portada.jpg") center/cover!important}
 .home-hero-clean .hero-clean-grid{min-height:520px}
 .buy-home{grid-template-columns:minmax(0,650px);justify-content:start}
 
@@ -268,4 +268,57 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
   .search-bar>label,.search-bar>label:nth-of-type(2),.search-bar>label:nth-of-type(3),.search-bar>label:nth-of-type(4){padding:12px 13px}
   .search-bar .budget-range-wrap{grid-template-columns:88px minmax(0,1fr);gap:10px}
   .search-bar .budget-value{font-size:12px}
+}
+
+/* ---- Revisión integral (nov 2026) ---- */
+/* Anti-spam field: hidden from people, visible to bots */
+.form-hp{position:absolute!important;left:-10000px!important;width:1px;height:1px;overflow:hidden}
+.contact-form{position:relative}
+.contact-form .privacy span{line-height:1.6}
+.form-error{margin:0 0 14px}
+/* Property gallery: same layout, photos open a full viewer */
+.detail-gallery{position:relative}
+.detail-gallery-item{border:0;padding:0;margin:0;background:var(--sand);cursor:zoom-in;display:block;min-width:0;min-height:0;overflow:hidden}
+.detail-gallery-item img{display:block;width:100%;height:100%;object-fit:cover}
+.detail-gallery-item:first-child{grid-column:1;grid-row:1/3}
+.detail-gallery-item:nth-child(2){grid-column:2;grid-row:1}
+.detail-gallery-item:nth-child(3){grid-column:2;grid-row:2}
+.detail-gallery:not(:has(.detail-gallery-item + .detail-gallery-item)) .detail-gallery-item{grid-column:1/-1}
+.detail-gallery:not(:has(.detail-gallery-item:nth-child(3))) .detail-gallery-item:nth-child(2){grid-row:1/3}
+.detail-gallery-all{grid-column:-2/-1;grid-row:2;align-self:end;justify-self:end;margin:12px;z-index:1;border:1px solid var(--black);background:var(--paper);color:var(--ink);font:600 11px Montserrat,Arial,sans-serif;padding:10px 13px;cursor:pointer;box-shadow:3px 3px 0 var(--brown)}
+.gallery-dialog{width:min(1100px,100vw);max-width:100vw;height:100dvh;max-height:100dvh;margin:0 auto;padding:0;border:0;background:var(--black);color:var(--paper)}
+.gallery-dialog::backdrop{background:rgba(23,21,20,.85)}
+.gallery-dialog-bar{position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;background:var(--black);font-size:12px}
+.gallery-dialog-bar button{border:1px solid var(--paper);background:none;color:var(--paper);font:600 12px Montserrat,Arial,sans-serif;padding:10px 14px;cursor:pointer}
+.gallery-dialog-list{display:grid;gap:10px;padding:0 18px 18px}
+.gallery-dialog-list img{display:block;width:100%;height:auto}
+.detail-energy{font-size:14px}
+.detail-disclaimer{margin-top:38px;font-size:11px;line-height:1.7;color:var(--brown)}
+.detail-call{margin:16px 0 0;font-size:12px;line-height:1.7}
+/* Cookie banner with accept / reject / configure */
+.cookie-notice p a{text-underline-offset:3px}
+.cookie-actions{flex-wrap:wrap;justify-content:flex-end;gap:10px}
+.cookie-actions .cookie-secondary{background:var(--paper);color:var(--ink);border:1px solid var(--black)}
+.cookie-categories{display:grid;gap:12px;margin-top:6px}
+.cookie-categories label{display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start;font-size:12px;line-height:1.6;color:var(--brown)}
+.cookie-categories b{display:block;color:var(--ink)}
+.cookie-notice.is-settings{grid-template-columns:1fr}
+.footer-cookie-button{border:0;background:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none}
+.footer-cookie-button:hover{color:#ded0c4}
+.legal-page .footer-cookie-button{border:1px solid var(--black);padding:12px 16px;font:600 12px Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)}
+/* Legal pages */
+.legal-list{padding-left:18px;font-size:14px;line-height:1.85}
+.legal-list li{margin-bottom:6px}
+.legal-pending{background:#f6e3c6;color:#5a3a2e;padding:1px 5px;font-weight:600}
+.legal-table-wrap{overflow-x:auto;margin:18px 0}
+.legal-table{border-collapse:collapse;width:100%;min-width:620px;font-size:12px;line-height:1.6}
+.legal-table th,.legal-table td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}
+.legal-table th{background:var(--paper);font-size:10px;letter-spacing:.4px;text-transform:uppercase}
+@media(max-width:720px){
+  .detail-gallery-item{display:none}
+  .detail-gallery-item:first-child{display:block;grid-row:1;grid-column:1}
+  .detail-gallery-all{grid-column:1;grid-row:1}
+  .cookie-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .cookie-actions button{padding:12px 10px}
+  .cookie-actions button:last-child{grid-column:1/-1}
 }
