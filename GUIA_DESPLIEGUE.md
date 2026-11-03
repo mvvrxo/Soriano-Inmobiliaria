@@ -16,7 +16,9 @@ Los precios y límites pueden cambiar: compruébalos en las páginas oficiales d
 2. Elige una organización, escribe un nombre como `soriano-inmobiliaria` y genera una contraseña segura para la base de datos. Guárdala en un gestor de contraseñas.
 3. Elige una región europea cercana y crea el proyecto.
 4. Cuando esté listo, abre **SQL Editor** y pulsa **New query**.
-5. Abre en Visual Studio Code el archivo `supabase/migrations/202609050001_initial_schema.sql`, copia todo su contenido, pégalo en el editor SQL y pulsa **Run** una sola vez.
+5. Abre en Visual Studio Code el archivo `supabase/migrations/202609050001_initial_schema.sql`, copia todo su contenido, pégalo en el editor SQL y pulsa **Run** una sola vez. Repite lo mismo, en orden, con el resto de archivos de `supabase/migrations/`.
+
+> Si usas el CLI de Supabase, en lugar de pegar el SQL ejecuta `supabase link --project-ref <ref>` y `supabase db push`. Si alguna migración ya se aplicó a mano desde el editor SQL, márcala antes como aplicada con `supabase migration repair --status applied <versión>` para que `db push` no intente repetirla.
 
 Ese script crea:
 
