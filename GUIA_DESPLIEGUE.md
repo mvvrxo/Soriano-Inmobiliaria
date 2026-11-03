@@ -134,3 +134,20 @@ Si llegaste a añadir registros de una publicación anterior de OpenAI Sites —
 - El dominio carga con HTTPS y redirige a una única versión canónica.
 
 Documentación oficial: [Supabase con Next.js](https://supabase.com/docs/guides/auth/server-side/nextjs), [seguridad de Storage](https://supabase.com/docs/guides/storage/security/access-control), [variables de entorno de Vercel](https://vercel.com/docs/environment-variables/framework-environment-variables) y [dominios personalizados de Vercel](https://vercel.com/docs/domains/set-up-custom-domain).
+
+## Envío de formularios por correo (Resend)
+
+Los formularios de la web envían cada solicitud a info@sorianogrupo.com mediante [Resend](https://resend.com) y guardan una copia en Supabase, visible en `/admin` → Consultas.
+
+1. Crea una cuenta en resend.com (el plan gratuito permite 3.000 correos al mes).
+2. En **Domains → Add domain**, añade `sorianogrupo.com` (región Irlanda, `eu-west-1`).
+3. Resend mostrará varios registros DNS (DKIM y, para el subdominio `send`, MX y SPF). El DNS de `sorianogrupo.com` está en Microsoft 365: entra en el centro de administración de Microsoft 365 → **Configuración → Dominios → sorianogrupo.com → Registros DNS** y añade los registros exactamente como los indica Resend. No modifiques los registros existentes de Microsoft (MX de Outlook y SPF del dominio principal).
+4. Cuando Resend marque el dominio como **Verified**, crea una clave en **API Keys** con permiso *Sending access*.
+5. En Vercel → proyecto `sorianoinmobiliaria` → **Settings → Environment Variables**, añade para *Production* (y *Preview* si quieres probar):
+   - `RESEND_API_KEY` = la clave creada.
+   - `CONTACT_EMAIL_FROM` = `Web Soriano <web@sorianogrupo.com>`
+   - `CONTACT_EMAIL_TO` = `info@sorianogrupo.com`
+6. Vuelve a desplegar la web y envía una prueba desde cada formulario.
+
+Si falta la configuración o el envío falla, el formulario muestra un mensaje de error al visitante (nunca un falso «enviado»).
+
