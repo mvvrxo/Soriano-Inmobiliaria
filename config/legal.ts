@@ -5,17 +5,17 @@
  */
 export const legalConfig = {
   /** Razón social (if a company) or full name of the self-employed owner. */
-  holderName: "",
+  holderName: "Jonathan Soriano Gallego",
   /** "sociedad" or "autonomo". Controls whether registry data is required. */
-  holderKind: "" as "" | "sociedad" | "autonomo",
+  holderKind: "autonomo" as "" | "sociedad" | "autonomo",
   /** NIF / CIF. */
-  taxId: "",
+  taxId: "49502906Y",
   /** Registered or professional address, with postcode and town. */
-  registeredAddress: "",
+  registeredAddress: "Carrer de Sumella, 13, Local B, 08880 Cubelles (Barcelona)",
   /** Registro Mercantil details (tomo, folio, hoja). Only for companies. */
   mercantileRegistry: "",
   /** Número de inscripción en el Registre d'Agents Immobiliaris de Catalunya (AICAT). */
-  aicatNumber: "",
+  aicatNumber: "14338",
   /** Email for privacy requests. */
   privacyEmail: "info@sorianogrupo.com",
   /** Date shown as "Última actualización" on the legal pages. */
