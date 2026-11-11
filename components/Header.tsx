@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "./Link";
 
 const links = [
-  ["Inicio", "/"], ["Catálogo", "/inmuebles"], ["Vender", "/vender"], ["Contactar", "/contacto"],
+  ["Inicio", "/"], ["Catálogo", "/inmuebles"], ["Vender", "/vender"], ["Quiénes somos", "/quienes-somos"], ["Contacto", "/contacto"],
 ];
 
 export function Header() {
@@ -18,7 +18,7 @@ export function Header() {
       const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
       return <Link aria-current={isActive ? "page" : undefined} className={href === "/contacto" ? "nav-contact-link" : undefined} key={label} href={href} onClick={() => setOpen(false)}>{label}</Link>;
     })}</nav>
-    <Link className="header-cta" href="/contacto">Contactar <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" /></svg></Link>
+    <Link className="header-cta" href="/contacto">Contacto <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" /></svg></Link>
     <button className={open ? "menu-button is-open" : "menu-button"} aria-label={open ? "Cerrar menú" : "Abrir menú"} aria-controls="primary-navigation" aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /><span /></button>
   </div></header>;
 }

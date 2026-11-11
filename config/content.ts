@@ -22,4 +22,11 @@ export const editableCopy = {
     title: "Contacto",
     description: "Cuéntanos qué necesitas y te responderemos con la información adecuada para tu caso.",
   },
+  // Pending final copy. Fill `description` and add `sections` ({ title, text }) when the content is ready;
+  // the page stays out of search engines until it has content.
+  about: {
+    title: "Quiénes somos",
+    description: "",
+    sections: [] as ReadonlyArray<{ title: string; text: string }>,
+  },
 } as const;

@@ -322,3 +322,25 @@ body:has(.cookie-notice) .whatsapp{bottom:145px}
   .cookie-actions button{padding:12px 10px}
   .cookie-actions button:last-child{grid-column:1/-1}
 }
+
+/* ---- Cambios concretos (nov 2026) ---- */
+/* Five menu items: stagger the fifth like the rest */
+.home-site-header .primary-nav.is-open a:nth-child(5){transition-delay:.2s}
+@media(max-width:720px){.inner-site-header .primary-nav.is-open a:nth-child(5){transition-delay:.2s}}
+/* Home search without its outer frame */
+.hero-search .search-bar{border:0;box-shadow:none}
+/* The Contacto button stays black on its own page, as everywhere else */
+.inner-site-header .primary-nav .nav-contact-link[aria-current="page"],.home-site-header .primary-nav .nav-contact-link[aria-current="page"]{background:var(--black);color:var(--paper)}
+.inner-site-header .primary-nav .nav-contact-link[aria-current="page"]:hover{background:var(--brown)}
+/* Home sections alternate beige / black / beige, then the black footer */
+.sell-home{background:var(--cream);color:var(--ink)}
+.sell-home .eyebrow.light{color:var(--brown)}
+.sell-home-grid>div>p:not(.eyebrow){color:var(--ink)}
+.sell-home .button-cream{background:var(--black);color:var(--paper)}
+.sell-home-note{border-left-color:var(--line)}
+.sell-home-note p{color:var(--brown)}
+.sell-home-note span{color:var(--ink)}
+.buy-home-band{background:var(--black);color:var(--paper)}
+.buy-home-band .eyebrow{color:#eadbd0}
+.buy-home-band .buy-home>div>p:not(.eyebrow){color:#ded0c4}
+.buy-home-band .button-black{background:var(--cream);color:var(--black)}
