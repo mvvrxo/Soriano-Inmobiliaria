@@ -102,7 +102,8 @@ test("integrates the home navigation into the cover", async () => {
   assert.match(header, /home-site-header/);
   assert.match(header, /inner-site-header/);
   assert.match(header, /aria-current=/);
-  assert.match(header, /\["Contactar", "\/contacto"\]/);
+  assert.match(header, /\["Vender", "\/vender"\], \["Quiénes somos", "\/quienes-somos"\], \["Contacto", "\/contacto"\]/);
+  assert.doesNotMatch(home, /home-intro|QUÉ HACEMOS/);
   assert.match(header, /<span \/><span \/><span \/>/);
   assert.match(header, /menu-button is-open/);
   assert.match(header, /<svg aria-hidden="true"/);
