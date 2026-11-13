@@ -15,12 +15,16 @@ export const editableCopy = {
   },
   sell: {
     title: "Vender tu vivienda",
-    description: "Estudiamos cada vivienda, definimos una estrategia de venta y te acompañamos durante todo el proceso.",
+    // Intro on the Vender page; the home page uses homeDescription.
+    description: "Cada vivienda tiene unas particularidades y unas circunstancias propias. Por eso, abordamos cada operación de forma individual, con un análisis previo, una estrategia de comercialización y un seguimiento cercano durante todo el proceso de venta.",
+    homeDescription: "Cada vivienda requiere una estrategia de venta. Analizamos sus características y el mercado para definir cómo comercializarla y acompañarte durante todo el proceso.",
     label: "PARA PROPIETARIOS",
   },
   contact: {
     title: "Contacto",
+    // Intro on the Contacto page; the home page uses homeDescription.
     description: "Cuéntanos qué necesitas y te responderemos con la información adecuada para tu caso.",
+    homeDescription: "¿Estás pensando en vender, comprar o necesitas más información? Estamos aquí para ayudarte. Cuéntanos qué necesitas y hablamos.",
   },
   // Pending final copy. Fill `description` and add `sections` ({ title, text }) when the content is ready;
   // the page stays out of search engines until it has content.
